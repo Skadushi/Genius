@@ -5,36 +5,48 @@
     android:id="@+id/mainLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#12202f"
+    android:background="@color/colorPrimary"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/playSwap"
+        style="@android:style/Widget.Holo.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Play !" />
+        android:text="@string/playButton"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button2"
+        style="@android:style/Widget.Holo.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Button" />
+        android:text="Button"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button3"
+        style="@android:style/Widget.Holo.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Button" />
+        android:text="Button"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button4"
+        style="@android:style/Widget.Holo.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Button" />
+        android:text="Button"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
 </LinearLayout>
