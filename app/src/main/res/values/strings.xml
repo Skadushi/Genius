@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Genius</string>
-    <string name="start">START</string>
+    <string name="start">Start</string>
     <string name="playButton">Play</string>
 </resources>
