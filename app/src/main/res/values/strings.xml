@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Genius</string>
-    <string name="start">Start</string>
+    <!-->Main Screen<-->
     <string name="playButton">Play</string>
+    <string name="aboutButton">About</string>
+    <string name="highScoresButton">High Scores</string>
+    <string name="howToPlayButton">How to Play</string>
+    <!-->Game Screen<-->
+    <string name="start">Start</string>
+
+
 </resources>
