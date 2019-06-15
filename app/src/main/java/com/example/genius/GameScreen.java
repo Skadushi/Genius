@@ -1,8 +1,5 @@
 package com.example.genius;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +11,7 @@ import android.widget.Toast;
 
 public class GameScreen extends AppCompatActivity {
 
+    public static Boolean clickable;
     private int cancel;
     private LinearLayout gameLayout;
     private Button backButton;
@@ -22,10 +20,12 @@ public class GameScreen extends AppCompatActivity {
     private Button hardButton;
     private TextView scoreLabel;
     private TextView pointsLabel;
+    private TextView numberTipLabel;
     private ImageView greenButton;
     private ImageView redButton;
     private ImageView yellowButton;
     private ImageView blueButton;
+    private LinearLayout coloredLayout;
 
     private GameEngine gameEngine;
 
@@ -34,6 +34,7 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
         cancel = 1;
+        clickable = false;
 
         getSupportActionBar().hide();
         gameLayout = findViewById(R.id.gameLinearLayout);
@@ -41,15 +42,17 @@ public class GameScreen extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         backButton = findViewById(R.id.backButton);
-        startButton = findViewById(R.id.startButton);
         easyButton = findViewById(R.id.easyButton);
         hardButton = findViewById(R.id.hardButton);
+        startButton = findViewById(R.id.startButton);
         scoreLabel = findViewById(R.id.scoreLabel);
         pointsLabel = findViewById(R.id.pointsLabel);
+        numberTipLabel = findViewById(R.id.numberTip);
         greenButton = findViewById(R.id.greenButton);
         redButton = findViewById(R.id.redButton);
         yellowButton = findViewById(R.id.yellowButton);
         blueButton = findViewById(R.id.blueButton);
+        coloredLayout = findViewById(R.id.coloredLayout);
 
         gameEngine = new GameEngine();
 
@@ -63,20 +66,22 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cancel = 0;
-                scoreLabel.setVisibility(View.VISIBLE);
-                pointsLabel.setVisibility(View.VISIBLE);
-                pointsLabel.setText("0");
-                gameEngine.play(greenButton, redButton, yellowButton, blueButton);
+                numberTipLabel.setVisibility(View.VISIBLE);
+                startButton.setVisibility(View.GONE);
+                gameEngine.showColors(coloredLayout, numberTipLabel);
+                clickable = false;
             }
         });
-
 
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cancel = 0;
+                pointsLabel.setText("0");
                 gameEngine.setDifficulty(750);
+                scoreLabel.setVisibility(View.VISIBLE);
                 startButton.setVisibility(View.VISIBLE);
+                pointsLabel.setVisibility(View.VISIBLE);
                 easyButton.setVisibility(View.GONE);
                 hardButton.setVisibility(View.GONE);
             }
@@ -86,13 +91,21 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cancel = 0;
+                pointsLabel.setText("0");
                 gameEngine.setDifficulty(375);
+                scoreLabel.setVisibility(View.VISIBLE);
                 startButton.setVisibility(View.VISIBLE);
+                pointsLabel.setVisibility(View.VISIBLE);
                 easyButton.setVisibility(View.GONE);
                 hardButton.setVisibility(View.GONE);
             }
         });
+    }
 
+    public void greenPressed(View view){
+        if(clickable){
+            //TODO
+        }
     }
 
     @Override

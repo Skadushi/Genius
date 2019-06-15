@@ -8,7 +8,7 @@ public class Color {
     public static final int RED = 1;
     public static final int YELLOW = 2;
     public static final int BLUE = 3;
-    public static final int UNDEFINED = 4;
+    //public static final int UNDEFINED = 4;
 
     public int color;
 
