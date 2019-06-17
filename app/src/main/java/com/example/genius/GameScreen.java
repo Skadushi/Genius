@@ -1,5 +1,6 @@
 package com.example.genius;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class GameScreen extends AppCompatActivity {
 
     public static Boolean clickable;
-    private int cancel;
+    private int level;
+    private Boolean cancel;
+    private Integer points;
     private LinearLayout gameLayout;
     private Button backButton;
     private Button startButton;
@@ -33,12 +38,13 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
-        cancel = 1;
         clickable = false;
+        cancel = true;
+        points = 0;
 
         getSupportActionBar().hide();
         gameLayout = findViewById(R.id.gameLinearLayout);
-        gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         backButton = findViewById(R.id.backButton);
@@ -65,9 +71,9 @@ public class GameScreen extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancel = 0;
-                numberTipLabel.setVisibility(View.VISIBLE);
+                cancel = false;
                 startButton.setVisibility(View.GONE);
+                numberTipLabel.setVisibility(View.VISIBLE);
                 gameEngine.showColors(coloredLayout, numberTipLabel);
                 clickable = false;
             }
@@ -76,43 +82,102 @@ public class GameScreen extends AppCompatActivity {
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancel = 0;
-                pointsLabel.setText("0");
+                cancel = false;
+                level = Game.EASY;
+                pointsLabel.setText(String.format(Locale.getDefault(), "%d", points));
                 gameEngine.setDifficulty(750);
                 scoreLabel.setVisibility(View.VISIBLE);
-                startButton.setVisibility(View.VISIBLE);
                 pointsLabel.setVisibility(View.VISIBLE);
+                startButton.setVisibility(View.VISIBLE);
                 easyButton.setVisibility(View.GONE);
                 hardButton.setVisibility(View.GONE);
+                numberTipLabel.setVisibility(View.GONE);
             }
         });
 
         hardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancel = 0;
-                pointsLabel.setText("0");
+                cancel = false;
+                level = Game.HARD;
+                pointsLabel.setText(String.format(Locale.getDefault(), "%d", points));
                 gameEngine.setDifficulty(375);
                 scoreLabel.setVisibility(View.VISIBLE);
-                startButton.setVisibility(View.VISIBLE);
                 pointsLabel.setVisibility(View.VISIBLE);
+                startButton.setVisibility(View.VISIBLE);
                 easyButton.setVisibility(View.GONE);
                 hardButton.setVisibility(View.GONE);
+                numberTipLabel.setVisibility(View.GONE);
             }
         });
+
+        greenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickable){
+                    check(gameEngine.greenClick(greenButton));
+                }
+            }
+        });
+
+        redButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickable){
+                    check(gameEngine.redClick(redButton));
+                }
+            }
+        });
+
+        yellowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickable){
+                    check(gameEngine.yellowClick(yellowButton));
+                }
+            }
+        });
+
+        blueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickable){
+                    check(gameEngine.blueClick(blueButton));
+                }
+            }
+        });
+
     }
 
-    public void greenPressed(View view){
-        if(clickable){
-            //TODO
+    private void check(int res){
+        if(res == Game.END){
+            points++;
+            clickable = false;
+            pointsLabel.setText(String.format(Locale.getDefault(), "%d", points));
+            numberTipLabel.setVisibility(View.GONE);
+            startButton.setVisibility(View.VISIBLE);
+        } else if(res == Game.RIGHT){
+            points++;
+            pointsLabel.setText(String.format(Locale.getDefault(), "%d", points));
+        } else if (res == Game.WRONG){
+            Intent intent = new Intent(this, EndGameScreen.class);
+            intent.putExtra("level", level);
+            intent.putExtra("points", points);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "An internal error has occurred!", Toast.LENGTH_LONG).show();
+            cancel = true;
+            onBackPressed();
         }
     }
 
+
     @Override
     public void onBackPressed() {
-        if(cancel == 0){
+        if(!cancel){
             Toast.makeText(this, "Click once more to leave!", Toast.LENGTH_SHORT).show();
-            cancel++;
+            cancel = true;
         } else {
             super.onBackPressed();
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -122,8 +187,14 @@ public class GameScreen extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        cancel = 0;
-        gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        cancel = false;
+        gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         super.onRestart();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        super.onWindowFocusChanged(hasFocus);
     }
 }

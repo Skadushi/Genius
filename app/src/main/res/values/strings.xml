@@ -11,11 +11,8 @@
     <string name="hard">Hard</string>
     <string name="back">Back</string>
     <string name="score">Score</string>
+    <!-->Game Over Screen<-->
+    <string name="gameOver">Game Over</string>
     <!-->Colors<-->
-    <string name="green">Green</string>
-    <string name="red">Red</string>
-    <string name="yellow">Yellow</string>
-    <string name="blue">Blue</string>
-
 
 </resources>

@@ -1,26 +1,27 @@
 package com.example.genius;
 
 import android.os.Handler;
-import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.logging.LogRecord;
 
 public class GameEngine {
 
     private ArrayList<Color> colors;
     private long difficulty;
+    private int current;
 
     public GameEngine() {
+        current = 0;
         colors = new ArrayList<>();
         for (int x = 0; x < 2; x++) {
             generateNext();
         }
     }
 
-    private void generateNext(){
+    public void generateNext(){
         colors.add(new Color());
     }
 
@@ -82,75 +83,101 @@ public class GameEngine {
         } else {
             coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.colorPrimary));
             tip.setText("");
+            GameScreen.clickable = true;
         }
     }
 
+    private Boolean levelEnded(){
+        if(current == colors.size()){
+            return true;
+        }
+
+        return false;
+    }
+
+    public int greenClick(final ImageView pressed){
+        pressed.setImageResource(R.drawable.green_pressed);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pressed.setImageResource(R.drawable.green);
+            }
+        }, 100);
+
+        if(colors.get(current).color == Color.GREEN){
+            current++;
+            if(levelEnded()){
+                current = 0;
+                return Game.END;
+            }
+            return Game.RIGHT;
+        } else {
+            return Game.WRONG;
+        }
+    }
+
+    public int redClick(final ImageView pressed){
+        pressed.setImageResource(R.drawable.red_pressed);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pressed.setImageResource(R.drawable.red);
+            }
+        }, 100);
+
+        if(colors.get(current).color == Color.RED){
+            current++;
+            if(levelEnded()){
+                current = 0;
+                return Game.END;
+            }
+            return Game.RIGHT;
+        } else {
+            return Game.WRONG;
+        }
+    }
+
+    public int yellowClick(final ImageView pressed){
+        pressed.setImageResource(R.drawable.yellow_pressed);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pressed.setImageResource(R.drawable.yellow);
+            }
+        }, 100);
+
+        if(colors.get(current).color == Color.YELLOW){
+            current++;
+            if(levelEnded()){
+                current = 0;
+                return Game.END;
+            }
+            return Game.RIGHT;
+        } else {
+            return Game.WRONG;
+        }
+    }
+
+    public int blueClick(final ImageView pressed){
+        pressed.setImageResource(R.drawable.blue_pressed);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pressed.setImageResource(R.drawable.blue);
+            }
+        }, 100);
+
+        if(colors.get(current).color == Color.BLUE){
+            current++;
+            if(levelEnded()){
+                current = 0;
+                return Game.END;
+            }
+            return Game.RIGHT;
+        } else {
+            return Game.WRONG;
+        }
+    }
 
 }
-
-
-//Fix this, consuming too much processing power
-//    public void play(ImageView green, ImageView red, ImageView yellow, ImageView blue){
-//        int iteration = 0;
-//        long time = System.currentTimeMillis();
-//        int beingUsed = Color.UNDEFINED;
-//        while(iteration < colors.size()){
-//             if(beingUsed != Color.UNDEFINED){
-//                 if((System.currentTimeMillis() - time) >= difficulty){
-//                     switch (beingUsed){
-//                         case Color.GREEN:
-//                             green.setImageResource(R.drawable.green);
-//                             beingUsed = Color.UNDEFINED;
-//                             iteration++;
-//                             time = System.currentTimeMillis();
-//                             break;
-//
-//                         case Color.RED:
-//                             red.setImageResource(R.drawable.red);
-//                             beingUsed = Color.UNDEFINED;
-//                             iteration++;
-//                             time = System.currentTimeMillis();
-//                             break;
-//
-//                         case Color.YELLOW:
-//                             yellow.setImageResource(R.drawable.yellow);
-//                             beingUsed = Color.UNDEFINED;
-//                             iteration++;
-//                             time = System.currentTimeMillis();
-//                             break;
-//
-//                         case Color.BLUE:
-//                             blue.setImageResource(R.drawable.blue);
-//                             beingUsed = Color.UNDEFINED;
-//                             iteration++;
-//                             time = System.currentTimeMillis();
-//                             break;
-//                     }
-//                 }
-//             } else {
-//                 switch (colors.get(iteration).color){
-//                     case Color.GREEN:
-//                         green.setImageResource(R.drawable.green_pressed);
-//                         beingUsed = Color.GREEN;
-//                         break;
-//
-//                     case Color.RED:
-//                         red.setImageResource(R.drawable.red_pressed);
-//                         beingUsed = Color.RED;
-//                         break;
-//
-//                     case Color.YELLOW:
-//                         yellow.setImageResource(R.drawable.yellow_pressed);
-//                         beingUsed = Color.YELLOW;
-//                         break;
-//
-//                     case Color.BLUE:
-//                         blue.setImageResource(R.drawable.blue_pressed);
-//                         beingUsed = Color.BLUE;
-//                         break;
-//                 }
-//             }
-//        }
-//    }
-
 
