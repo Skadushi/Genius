@@ -85,7 +85,7 @@ public class GameScreen extends AppCompatActivity {
                 cancel = false;
                 level = Game.EASY;
                 pointsLabel.setText(String.format(Locale.getDefault(), "%d", points));
-                gameEngine.setDifficulty(750);
+                gameEngine.setDifficulty(Game.EASY_SPEED);
                 scoreLabel.setVisibility(View.VISIBLE);
                 pointsLabel.setVisibility(View.VISIBLE);
                 startButton.setVisibility(View.VISIBLE);
@@ -101,7 +101,7 @@ public class GameScreen extends AppCompatActivity {
                 cancel = false;
                 level = Game.HARD;
                 pointsLabel.setText(String.format(Locale.getDefault(), "%d", points));
-                gameEngine.setDifficulty(375);
+                gameEngine.setDifficulty(Game.HARD_SPEED);
                 scoreLabel.setVisibility(View.VISIBLE);
                 pointsLabel.setVisibility(View.VISIBLE);
                 startButton.setVisibility(View.VISIBLE);

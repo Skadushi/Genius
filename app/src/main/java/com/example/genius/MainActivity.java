@@ -12,6 +12,9 @@ public class MainActivity extends AppCompatActivity {
 
     private LinearLayout mainLayout;
     private Button playMenuButton;
+    private Button howToMenuButton;
+    private Button aboutMenuButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         playMenuButton = findViewById(R.id.playMenuButton);
+        howToMenuButton = findViewById(R.id.howToPlayMenuButton);
+        aboutMenuButton = findViewById(R.id.aboutMenuButton);
 
         playMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +36,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(v.getContext(), GameScreen.class));
             }
         });
+
+        howToMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), HowToPlay.class));
+            }
+        });
+
+        aboutMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), About.class));
+            }
+        });
+
     }
 
     @Override

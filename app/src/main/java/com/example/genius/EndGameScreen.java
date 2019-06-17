@@ -51,6 +51,22 @@ public class EndGameScreen extends AppCompatActivity {
         backButton = findViewById(R.id.backOverButton);
         usernameInput = findViewById(R.id.usernameInput);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //DB save
+                cancel = true;
+                onBackPressed();
+            }
+        });
+
         startAnimations();
 
         //AndroidBug5497 Work around
@@ -131,7 +147,11 @@ public class EndGameScreen extends AppCompatActivity {
         if (view == null) {
             view = new View(activity);
         }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        try {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (Exception e){
+            Toast.makeText(view.getContext(), "Error on launching keyboard!", Toast.LENGTH_SHORT).show();
+        }
         view.clearFocus();
     }
 
