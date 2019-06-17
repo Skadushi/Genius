@@ -1,11 +1,15 @@
 package com.example.genius;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +21,13 @@ public class EndGameScreen extends AppCompatActivity {
     private int score;
     private int level;
     private Boolean cancel;
-    private TextView gameOver;
+    private Button backButton;
+    private Button sendButton;
     private TextView scoreLabel;
+    private TextView levelLabel;
     private TextView pointsLabel;
+    private TextView gameOverLabel;
+    private EditText usernameInput;
     private LinearLayout endGameLayout;
 
     @Override
@@ -35,21 +43,47 @@ public class EndGameScreen extends AppCompatActivity {
         cancel = false;
         score = getIntent().getIntExtra("points", 0);
         level = getIntent().getIntExtra("level", Game.EASY);
-        gameOver = findViewById(R.id.gameOverLabel);
+        levelLabel = findViewById(R.id.levelLabel);
+        gameOverLabel = findViewById(R.id.gameOverLabel);
         scoreLabel = findViewById(R.id.scoreOverLabel);
         pointsLabel = findViewById(R.id.pointsOverLabel);
+        sendButton = findViewById(R.id.sendButton);
+        backButton = findViewById(R.id.backOverButton);
+        usernameInput = findViewById(R.id.usernameInput);
 
         startAnimations();
 
+        //AndroidBug5497 Work around
+        usernameInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onWindowFocusChanged(true);
+                    }
+                }, 300);
+            }
+        });
+        endGameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onWindowFocusChanged(true);
+                hideKeyboard(EndGameScreen.this);
+            }
+        });
     }
 
     private void startAnimations(){
+        final Animation slideIn = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in);
+        sendButton.setVisibility(View.INVISIBLE);
+        usernameInput.setVisibility(View.INVISIBLE);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                gameOver.setVisibility(View.VISIBLE);
-                Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in);
-                gameOver.setAnimation(animation);
+                gameOverLabel.setVisibility(View.VISIBLE);
+                gameOverLabel.setAnimation(slideIn);
             }
         }, 200);
 
@@ -57,8 +91,7 @@ public class EndGameScreen extends AppCompatActivity {
             @Override
             public void run() {
                 scoreLabel.setVisibility(View.VISIBLE);
-                Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in);
-                scoreLabel.setAnimation(animation);
+                scoreLabel.setAnimation(slideIn);
             }
         }, 400);
 
@@ -67,17 +100,44 @@ public class EndGameScreen extends AppCompatActivity {
             public void run() {
                 pointsLabel.setText(String.format(Locale.getDefault(), "%d", score));
                 pointsLabel.setVisibility(View.VISIBLE);
-                Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in);
-                pointsLabel.setAnimation(animation);
+                pointsLabel.setAnimation(slideIn);
             }
         }, 600);
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                levelLabel.setText(String.format(Locale.getDefault(), "%s", (level == Game.EASY) ? "Easy" : "Hard"));
+                levelLabel.setVisibility(View.VISIBLE);
+                levelLabel.setAnimation(slideIn);
+            }
+        }, 800);
 
+        final Animation fadeIn = AnimationUtils.loadAnimation(getBaseContext(), R.anim.fade_in);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sendButton.setVisibility(View.VISIBLE);
+                usernameInput.setVisibility(View.VISIBLE);
+                usernameInput.setAnimation(fadeIn);
+                sendButton.setAnimation(fadeIn);
+            }
+        }, 1200);
+    }
 
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        view.clearFocus();
     }
 
     @Override
     public void onBackPressed() {
+        onWindowFocusChanged(true);
         if(!cancel){
             Toast.makeText(this, "Click once more to go to Home Screen!", Toast.LENGTH_SHORT).show();
             cancel = true;

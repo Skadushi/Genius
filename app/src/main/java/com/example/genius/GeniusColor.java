@@ -2,7 +2,7 @@ package com.example.genius;
 
 import java.util.Random;
 
-public class Color {
+public class GeniusColor {
 
     public static final int GREEN = 0;
     public static final int RED = 1;
@@ -12,7 +12,7 @@ public class Color {
 
     public int color;
 
-    public Color() {
+    public GeniusColor() {
         this.color = generateColor();
     }
 

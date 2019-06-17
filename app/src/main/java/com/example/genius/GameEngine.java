@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class GameEngine {
 
-    private ArrayList<Color> colors;
+    private ArrayList<GeniusColor> colors;
     private long difficulty;
     private int current;
 
@@ -22,7 +22,7 @@ public class GameEngine {
     }
 
     public void generateNext(){
-        colors.add(new Color());
+        colors.add(new GeniusColor());
     }
 
     public void setDifficulty(long difficulty) {
@@ -36,10 +36,9 @@ public class GameEngine {
 
     private void recursiveColorChange(final LinearLayout coloredLayout, final TextView tip, Integer x) {
         final int i = x + 1;
-        System.out.println(x);
         if(x < colors.size()){
             switch (colors.get(x).color){
-                case Color.GREEN:
+                case GeniusColor.GREEN:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.green));
                     tip.setText(x.toString());
                     new Handler().postDelayed(new Runnable() {
@@ -49,7 +48,7 @@ public class GameEngine {
                         }
                     }, difficulty);
                     break;
-                case Color.RED:
+                case GeniusColor.RED:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.red));
                     tip.setText(x.toString());
                     new Handler().postDelayed(new Runnable() {
@@ -59,7 +58,7 @@ public class GameEngine {
                         }
                     }, difficulty);
                     break;
-                case Color.YELLOW:
+                case GeniusColor.YELLOW:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.yellow));
                     tip.setText(x.toString());
                     new Handler().postDelayed(new Runnable() {
@@ -69,7 +68,7 @@ public class GameEngine {
                         }
                     }, difficulty);
                     break;
-                case Color.BLUE:
+                case GeniusColor.BLUE:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.blue));
                     tip.setText(x.toString());
                     new Handler().postDelayed(new Runnable() {
@@ -104,7 +103,7 @@ public class GameEngine {
             }
         }, 100);
 
-        if(colors.get(current).color == Color.GREEN){
+        if(colors.get(current).color == GeniusColor.GREEN){
             current++;
             if(levelEnded()){
                 current = 0;
@@ -125,7 +124,7 @@ public class GameEngine {
             }
         }, 100);
 
-        if(colors.get(current).color == Color.RED){
+        if(colors.get(current).color == GeniusColor.RED){
             current++;
             if(levelEnded()){
                 current = 0;
@@ -146,7 +145,7 @@ public class GameEngine {
             }
         }, 100);
 
-        if(colors.get(current).color == Color.YELLOW){
+        if(colors.get(current).color == GeniusColor.YELLOW){
             current++;
             if(levelEnded()){
                 current = 0;
@@ -167,7 +166,7 @@ public class GameEngine {
             }
         }, 100);
 
-        if(colors.get(current).color == Color.BLUE){
+        if(colors.get(current).color == GeniusColor.BLUE){
             current++;
             if(levelEnded()){
                 current = 0;

@@ -13,6 +13,8 @@
     <string name="score">Score</string>
     <!-->Game Over Screen<-->
     <string name="gameOver">Game Over</string>
-    <!-->Colors<-->
+    <string name="typeName">Type here your name</string>
+    <string name="saveScore">Save score</string>
+    <!-->GeniusColor<-->
 
 </resources>
