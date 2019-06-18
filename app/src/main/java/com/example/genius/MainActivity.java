@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -14,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
     private Button playMenuButton;
     private Button howToMenuButton;
     private Button aboutMenuButton;
+
+
+    //jsonschema2pojo
+    //https://www.simplifiedcoding.net/retrofit-android-example/
 
 
     @Override
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         aboutMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), About.class));
+                startActivity(new Intent(v.getContext(), AboutScreen.class));
             }
         });
 

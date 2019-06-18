@@ -8,7 +8,7 @@
     android:background="@color/colorPrimary"
     android:gravity="start"
     android:orientation="vertical"
-    tools:context=".About">
+    tools:context=".AboutScreen">
 
     <Button
         android:id="@+id/backAboutButton"

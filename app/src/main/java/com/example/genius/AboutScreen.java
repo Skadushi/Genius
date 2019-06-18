@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class About extends AppCompatActivity {
+public class AboutScreen extends AppCompatActivity {
 
     private Button backButton;
     private LinearLayout aboutLayout;
@@ -14,7 +14,7 @@ public class About extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_about_screen);
 
         getSupportActionBar().hide();
         aboutLayout = findViewById(R.id.aboutLayout);
