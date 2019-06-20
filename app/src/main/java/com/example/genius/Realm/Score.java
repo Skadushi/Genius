@@ -4,11 +4,14 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Score extends RealmObject {
+
     @PrimaryKey
     private int idScore;
     private int score;
-    private int idPlayer;
     private int level;
+    private String nome;
+
+
 
     public int getIdScore() {
         return idScore;
@@ -16,6 +19,14 @@ public class Score extends RealmObject {
 
     public void setIdScore(int idScore) {
         this.idScore = idScore;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getScore() {
@@ -26,14 +37,6 @@ public class Score extends RealmObject {
         this.score = score;
     }
 
-    public int getIdPlayer() {
-        return idPlayer;
-    }
-
-    public void setIdPlayer(int idPlayer) {
-        this.idPlayer = idPlayer;
-    }
-
     public int getLevel() {
         return level;
     }
@@ -41,4 +44,5 @@ public class Score extends RealmObject {
     public void setLevel(int level) {
         this.level = level;
     }
+
 }

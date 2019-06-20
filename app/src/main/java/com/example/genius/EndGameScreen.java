@@ -14,7 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.genius.Realm.Score;
+
 import java.util.Locale;
+
+import io.realm.Realm;
 
 public class EndGameScreen extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class EndGameScreen extends AppCompatActivity {
     private TextView gameOverLabel;
     private EditText usernameInput;
     private LinearLayout endGameLayout;
+    private final Realm realm = Realm.getDefaultInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class EndGameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_end_game_screen);
 
         getSupportActionBar().hide();
+
         endGameLayout = findViewById(R.id.endGameLayout);
         endGameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -61,9 +67,17 @@ public class EndGameScreen extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DB save
-                cancel = true;
-                onBackPressed();
+                String name = usernameInput.getText().toString();
+                if(!(name.equals("")) && !(name.trim().isEmpty())){
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(EndGameScreen.this, R.string.provideName, Toast.LENGTH_LONG).show();
+                }
             }
         });
 
