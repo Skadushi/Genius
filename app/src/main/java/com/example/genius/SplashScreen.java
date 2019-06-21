@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.genius.Realm.Score;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -19,16 +20,17 @@ public class SplashScreen extends AppCompatActivity {
     private ImageView yellow;
     private ImageView blue;
     private ImageView red;
-    private LinearLayout splashLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        getSupportActionBar().hide();
-        splashLayout = findViewById(R.id.splashLinearLayout);
-        splashLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+
+        findViewById(R.id.splashLinearLayout).setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
         realmInit();
 
@@ -82,6 +84,7 @@ public class SplashScreen extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
+            @ParametersAreNonnullByDefault
             public void execute(Realm realm) {
                 Number maxId = realm.where(Score.class).max("idScore");
                 Score.id = (maxId == null) ? 1 : maxId.intValue() + 1;

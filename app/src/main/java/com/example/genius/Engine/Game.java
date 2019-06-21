@@ -8,7 +8,7 @@ public class Game {
     public static final int EASY = 3;
     public static final int HARD = 4;
 
-    public static final int EASY_SPEED = 750;
-    public static final int HARD_SPEED = 375;
+    public static final int EASY_SPEED = 900;
+    public static final int HARD_SPEED = 450;
 
 }

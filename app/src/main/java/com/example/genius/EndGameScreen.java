@@ -19,6 +19,8 @@ import com.example.genius.Realm.Score;
 
 import java.util.Locale;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import io.realm.Realm;
 
 public class EndGameScreen extends AppCompatActivity {
@@ -41,7 +43,9 @@ public class EndGameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game_screen);
 
-        getSupportActionBar().hide();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
 
         endGameLayout = findViewById(R.id.endGameLayout);
         endGameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -64,9 +68,10 @@ public class EndGameScreen extends AppCompatActivity {
                 if(!(name.equals("")) && !(name.trim().isEmpty())){
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
+                        @ParametersAreNonnullByDefault
                         public void execute(Realm realm) {
                             Score.id++;
-                            realm.copyToRealm(new Score(Score.id, score, Game.EASY, name));
+                            realm.copyToRealm(new Score(Score.id, score, level, name));
                             Toast.makeText(getApplicationContext(), R.string.scoreSaved, Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -74,7 +79,6 @@ public class EndGameScreen extends AppCompatActivity {
                     onBackPressed();
                 } else {
                     Toast.makeText(EndGameScreen.this, R.string.provideName, Toast.LENGTH_SHORT).show();
-                    onBackPressed();
                 }
             }
         });
@@ -156,14 +160,15 @@ public class EndGameScreen extends AppCompatActivity {
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = activity.getCurrentFocus();
+
         if (view == null) {
             view = new View(activity);
         }
-        try {
+
+        if(imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        } catch (Exception e){
-            Toast.makeText(view.getContext(), R.string.keyboardError, Toast.LENGTH_SHORT).show();
         }
+
         view.clearFocus();
     }
 

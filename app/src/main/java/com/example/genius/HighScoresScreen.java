@@ -13,6 +13,8 @@ import com.example.genius.Realm.Score;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -40,7 +42,9 @@ public class HighScoresScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_scores_screen);
 
-        getSupportActionBar().hide();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
 
         highScoresLayout = findViewById(R.id.highScoresLayout);
         highScoresLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -51,6 +55,7 @@ public class HighScoresScreen extends AppCompatActivity {
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override
+            @ParametersAreNonnullByDefault
             public void execute(Realm realm) {
                 RealmResults<Score> easyScores = realm.where(Score.class).equalTo("level", Game.EASY).sort("score", Sort.DESCENDING).findAll();
                 RealmResults<Score> hardScores = realm.where(Score.class).equalTo("level", Game.HARD).sort("score", Sort.DESCENDING).findAll();

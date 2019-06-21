@@ -45,7 +45,10 @@ public class GameScreen extends AppCompatActivity {
         cancel = true;
         points = 0;
 
-        getSupportActionBar().hide();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+
         gameLayout = findViewById(R.id.gameLinearLayout);
         gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
