@@ -141,7 +141,7 @@ public class GameScreen extends AppCompatActivity {
 
     }
 
-    private void check(int res){
+    private void check(int res) {
         if(res == Game.END){
             points++;
             clickable = false;
@@ -190,7 +190,7 @@ public class GameScreen extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
-    private void assign(){
+    private void assign() {
         backButton = findViewById(R.id.backButton);
         easyButton = findViewById(R.id.easyButton);
         hardButton = findViewById(R.id.hardButton);

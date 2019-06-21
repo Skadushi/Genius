@@ -4,18 +4,18 @@ import java.util.Random;
 
 public class GeniusColor {
 
-    public static final int GREEN = 0;
-    public static final int RED = 1;
-    public static final int YELLOW = 2;
-    public static final int BLUE = 3;
+    static final int GREEN = 0;
+    static final int RED = 1;
+    static final int YELLOW = 2;
+    static final int BLUE = 3;
 
     public int color;
 
-    public GeniusColor() {
+    GeniusColor() {
         this.color = generateColor();
     }
 
-    public static int generateColor(){
+    private static int generateColor() {
         return new Random().nextInt(4);
     }
 }

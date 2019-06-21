@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
-    private void assign(){
+    private void assign() {
         playMenuButton = findViewById(R.id.playMenuButton);
         howToMenuButton = findViewById(R.id.howToPlayMenuButton);
         aboutMenuButton = findViewById(R.id.aboutMenuButton);

@@ -51,7 +51,7 @@ public class HowToPlayScreen extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
-    private void assign(){
+    private void assign() {
         backButton = findViewById(R.id.backHButton);
     }
 

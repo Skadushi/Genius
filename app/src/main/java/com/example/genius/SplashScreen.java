@@ -37,7 +37,7 @@ public class SplashScreen extends AppCompatActivity {
         startAnimations();
     }
 
-    private void startAnimations(){
+    private void startAnimations() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() { green.setVisibility(View.VISIBLE);
@@ -74,7 +74,7 @@ public class SplashScreen extends AppCompatActivity {
         }, 1500);
     }
 
-    private void realmInit(){
+    private void realmInit() {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder().name("genius.realm").build();
         Realm.setDefaultConfiguration(config);
@@ -89,7 +89,7 @@ public class SplashScreen extends AppCompatActivity {
         });
     }
 
-    private void assign(){
+    private void assign() {
         green = findViewById(R.id.greenSplashIcon);
         yellow = findViewById(R.id.yellowSplashIcon);
         blue = findViewById(R.id.blueSplashIcon);

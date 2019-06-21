@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.genius.Engine.Game;
 import com.example.genius.Realm.Score;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -106,7 +105,7 @@ public class HighScoresScreen extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
-    private void assign(){
+    private void assign() {
         easyScore1 = findViewById(R.id.easyScore1);
         easyScore2 = findViewById(R.id.easyScore2);
         easyScore3 = findViewById(R.id.easyScore3);
@@ -120,7 +119,7 @@ public class HighScoresScreen extends AppCompatActivity {
         backButton = findViewById(R.id.backHSButton);
     }
 
-    private void fillList(){
+    private void fillList() {
         easyLabels = new ArrayList<>();
         hardLabels = new ArrayList<>();
         easyLabels.add(easyScore1);

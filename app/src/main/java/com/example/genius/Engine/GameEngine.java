@@ -91,11 +91,7 @@ public class GameEngine {
     }
 
     private Boolean levelEnded() {
-        if(current == colors.size()){
-            return true;
-        }
-
-        return false;
+        return current == colors.size();
     }
 
     public int greenClick(final ImageView pressed) {
