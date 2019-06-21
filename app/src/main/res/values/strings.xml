@@ -32,5 +32,8 @@
     <string name="fourth">4th</string>
     <string name="fifth">5th</string>
     <string name="loading">So empty!</string>
+    <string name="EASY">EASY</string>
+    <string name="HARD">HARD</string>
+
 
 </resources>

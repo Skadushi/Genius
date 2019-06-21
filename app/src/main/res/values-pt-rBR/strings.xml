@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Genius</string>
+    <string name="EASY">FÁCIL</string>
+    <string name="HARD">DIFÍCIL</string>
+    <string name="aboutButton">Sobre</string>
+    <string name="back">Voltar</string>
+    <string name="easy">Fácil</string>
+    <string name="err">Um erro interno ocorreu</string>
+    <string name="fifth">5º</string>
+    <string name="first">1º</string>
+    <string name="fourth">4º</string>
+    <string name="gameOver">Fim de jogo</string>
+    <string name="hard">Difícil</string>
+    <string name="highScoresButton">Melhores pontuações</string>
+    <string name="howToPlayButton">Como jogar</string>
+    <string name="keyboardError">Erro ao abrir o teclado</string>
+    <string name="loading">Tão Vazio!</string>
+    <string name="playButton">Jogar</string>
+    <string name="provideName">Digite um nome válido(espaços em branco não contam)</string>
+    <string name="saveScore">Salvar pontuação</string>
+    <string name="score">Pontuação</string>
+    <string name="scoreSaved">Pontuação salva!</string>
+    <string name="second">2º</string>
+    <string name="start">Começar</string>
+    <string name="third">3º</string>
+    <string name="toastEndBack">Clique mais uma vez para ir a Tela Inicial</string>
+    <string name="toastGameBack">Clique mais uma vez para sair!</string>
+    <string name="typeName">Digite seu nome aqui</string>
+</resources>

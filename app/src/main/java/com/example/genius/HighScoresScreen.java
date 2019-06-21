@@ -23,18 +23,14 @@ public class HighScoresScreen extends AppCompatActivity {
 
     private Button backButton;
     private LinearLayout highScoresLayout;
-    private TextView easyScore1;
-    private TextView easyScore2;
-    private TextView easyScore3;
-    private TextView easyScore4;
-    private TextView easyScore5;
-    private TextView hardScore1;
-    private TextView hardScore2;
-    private TextView hardScore3;
-    private TextView hardScore4;
-    private TextView hardScore5;
-    private ArrayList<TextView> easyLabels;
-    private ArrayList<TextView> hardLabels;
+    private TextView score1;
+    private TextView score2;
+    private TextView score3;
+    private TextView score4;
+    private TextView score5;
+    private TextView easyScores;
+    private TextView hardScores;
+    private ArrayList<TextView> labels;
     private final Realm realm = Realm.getDefaultInstance();
 
     @Override
@@ -52,35 +48,59 @@ public class HighScoresScreen extends AppCompatActivity {
 
         assign();
         fillList();
+        initializeAsEasy();
 
-        realm.executeTransaction(new Realm.Transaction() {
+        easyScores.setOnClickListener(new View.OnClickListener() {
             @Override
-            @ParametersAreNonnullByDefault
-            public void execute(Realm realm) {
-                RealmResults<Score> easyScores = realm.where(Score.class).equalTo("level", Game.EASY).sort("score", Sort.DESCENDING).findAll();
-                RealmResults<Score> hardScores = realm.where(Score.class).equalTo("level", Game.HARD).sort("score", Sort.DESCENDING).findAll();
+            public void onClick(View v) {
+                easyScores.setText(R.string.EASY);
+                hardScores.setText(R.string.hard);
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    @ParametersAreNonnullByDefault
+                    public void execute(Realm realm) {
+                        RealmResults<Score> easyScores = realm.where(Score.class).equalTo("level", Game.EASY).sort("score", Sort.DESCENDING).findAll();
 
-                for(int x = 0; x < 5 & x < easyScores.size(); x++){
-                    final TextView text = easyLabels.get(x);
-                    final Score score = easyScores.get(x);
-                    if(score == null) {
-                        continue;
-                    }
-                    text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
-                }
+                        resetLabels();
 
-                for(int x = 0; x < 5 & x < hardScores.size(); x++){
-                    final TextView text = hardLabels.get(x);
-                    final Score score = hardScores.get(x);
-                    if(score == null) {
-                        continue;
+                        for(int x = 0; x < 5 & x < easyScores.size(); x++){
+                            final TextView text = labels.get(x);
+                            final Score score = easyScores.get(x);
+                            if(score == null) {
+                                continue;
+                            }
+                            text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
+                        }
                     }
-                    text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
-                }
+                });
             }
         });
 
+        hardScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                easyScores.setText(R.string.easy);
+                hardScores.setText(R.string.HARD);
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    @ParametersAreNonnullByDefault
+                    public void execute(Realm realm) {
+                        RealmResults<Score> hardScores = realm.where(Score.class).equalTo("level", Game.HARD).sort("score", Sort.DESCENDING).findAll();
 
+                        resetLabels();
+
+                        for(int x = 0; x < 5 & x < hardScores.size(); x++){
+                            final TextView text = labels.get(x);
+                            final Score score = hardScores.get(x);
+                            if(score == null) {
+                                continue;
+                            }
+                            text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
+                        }
+                    }
+                });
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,32 +131,50 @@ public class HighScoresScreen extends AppCompatActivity {
     }
 
     private void assign() {
-        easyScore1 = findViewById(R.id.easyScore1);
-        easyScore2 = findViewById(R.id.easyScore2);
-        easyScore3 = findViewById(R.id.easyScore3);
-        easyScore4 = findViewById(R.id.easyScore4);
-        easyScore5 = findViewById(R.id.easyScore5);
-        hardScore1 = findViewById(R.id.hardScore1);
-        hardScore2 = findViewById(R.id.hardScore2);
-        hardScore3 = findViewById(R.id.hardScore3);
-        hardScore4 = findViewById(R.id.hardScore4);
-        hardScore5 = findViewById(R.id.hardScore5);
+        score1 = findViewById(R.id.easyScore1);
+        score2 = findViewById(R.id.easyScore2);
+        score3 = findViewById(R.id.easyScore3);
+        score4 = findViewById(R.id.easyScore4);
+        score5 = findViewById(R.id.easyScore5);
+        easyScores = findViewById(R.id.easyScoresLabel);
+        hardScores = findViewById(R.id.hardScoresLabel);
         backButton = findViewById(R.id.backHSButton);
     }
 
+    private void resetLabels(){
+        for(int x = 0; x < 5; x++){
+            labels.get(x).setText(R.string.loading);
+        }
+    }
+
     private void fillList() {
-        easyLabels = new ArrayList<>();
-        hardLabels = new ArrayList<>();
-        easyLabels.add(easyScore1);
-        easyLabels.add(easyScore2);
-        easyLabels.add(easyScore3);
-        easyLabels.add(easyScore4);
-        easyLabels.add(easyScore5);
-        hardLabels.add(hardScore1);
-        hardLabels.add(hardScore2);
-        hardLabels.add(hardScore3);
-        hardLabels.add(hardScore4);
-        hardLabels.add(hardScore5);
+        labels = new ArrayList<>();
+        labels.add(score1);
+        labels.add(score2);
+        labels.add(score3);
+        labels.add(score4);
+        labels.add(score5);
+    }
+
+    private void initializeAsEasy(){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            @ParametersAreNonnullByDefault
+            public void execute(Realm realm) {
+                RealmResults<Score> easyScores = realm.where(Score.class).equalTo("level", Game.EASY).sort("score", Sort.DESCENDING).findAll();
+
+                resetLabels();
+
+                for(int x = 0; x < 5 & x < easyScores.size(); x++){
+                    final TextView text = labels.get(x);
+                    final Score score = easyScores.get(x);
+                    if(score == null) {
+                        continue;
+                    }
+                    text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
+                }
+            }
+        });
     }
 
 }
