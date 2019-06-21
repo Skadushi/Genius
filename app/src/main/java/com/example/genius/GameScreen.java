@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.genius.Engine.Game;
+import com.example.genius.Engine.GameEngine;
+
 import java.util.Locale;
 
 public class GameScreen extends AppCompatActivity {
@@ -47,18 +50,7 @@ public class GameScreen extends AppCompatActivity {
         gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
-        backButton = findViewById(R.id.backButton);
-        easyButton = findViewById(R.id.easyButton);
-        hardButton = findViewById(R.id.hardButton);
-        startButton = findViewById(R.id.startButton);
-        scoreLabel = findViewById(R.id.scoreLabel);
-        pointsLabel = findViewById(R.id.pointsLabel);
-        numberTipLabel = findViewById(R.id.numberTip);
-        greenButton = findViewById(R.id.greenButton);
-        redButton = findViewById(R.id.redButton);
-        yellowButton = findViewById(R.id.yellowButton);
-        blueButton = findViewById(R.id.blueButton);
-        coloredLayout = findViewById(R.id.coloredLayout);
+        assign();
 
         gameEngine = new GameEngine();
 
@@ -166,7 +158,7 @@ public class GameScreen extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            Toast.makeText(this, "An internal error has occurred!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.err, Toast.LENGTH_SHORT).show();
             cancel = true;
             onBackPressed();
         }
@@ -176,7 +168,7 @@ public class GameScreen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(!cancel){
-            Toast.makeText(this, "Click once more to leave!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toastGameBack, Toast.LENGTH_SHORT).show();
             cancel = true;
         } else {
             super.onBackPressed();
@@ -197,4 +189,20 @@ public class GameScreen extends AppCompatActivity {
         gameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         super.onWindowFocusChanged(hasFocus);
     }
+
+    private void assign(){
+        backButton = findViewById(R.id.backButton);
+        easyButton = findViewById(R.id.easyButton);
+        hardButton = findViewById(R.id.hardButton);
+        startButton = findViewById(R.id.startButton);
+        scoreLabel = findViewById(R.id.scoreLabel);
+        pointsLabel = findViewById(R.id.pointsLabel);
+        numberTipLabel = findViewById(R.id.numberTip);
+        greenButton = findViewById(R.id.greenButton);
+        redButton = findViewById(R.id.redButton);
+        yellowButton = findViewById(R.id.yellowButton);
+        blueButton = findViewById(R.id.blueButton);
+        coloredLayout = findViewById(R.id.coloredLayout);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.genius;
+package com.example.genius.Engine;
 
 public class Game {
     public static final int END = 0;

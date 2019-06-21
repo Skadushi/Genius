@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.genius.Engine.Game;
 import com.example.genius.Realm.Score;
 
 import java.util.Locale;
@@ -47,15 +48,7 @@ public class EndGameScreen extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         cancel = false;
-        score = getIntent().getIntExtra("points", 0);
-        level = getIntent().getIntExtra("level", Game.EASY);
-        levelLabel = findViewById(R.id.levelLabel);
-        gameOverLabel = findViewById(R.id.gameOverLabel);
-        scoreLabel = findViewById(R.id.scoreOverLabel);
-        pointsLabel = findViewById(R.id.pointsOverLabel);
-        sendButton = findViewById(R.id.sendButton);
-        backButton = findViewById(R.id.backOverButton);
-        usernameInput = findViewById(R.id.usernameInput);
+        assign();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,16 +60,21 @@ public class EndGameScreen extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = usernameInput.getText().toString();
+                final String name = usernameInput.getText().toString();
                 if(!(name.equals("")) && !(name.trim().isEmpty())){
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
                         public void execute(Realm realm) {
-
+                            Score.id++;
+                            realm.copyToRealm(new Score(Score.id, score, Game.EASY, name));
+                            Toast.makeText(getApplicationContext(), R.string.scoreSaved, Toast.LENGTH_SHORT).show();
                         }
                     });
+                    cancel = true;
+                    onBackPressed();
                 } else {
-                    Toast.makeText(EndGameScreen.this, R.string.provideName, Toast.LENGTH_LONG).show();
+                    Toast.makeText(EndGameScreen.this, R.string.provideName, Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
             }
         });
@@ -104,7 +102,7 @@ public class EndGameScreen extends AppCompatActivity {
         });
     }
 
-    private void startAnimations(){
+    private void startAnimations() {
         final Animation slideIn = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in);
         sendButton.setVisibility(View.INVISIBLE);
         usernameInput.setVisibility(View.INVISIBLE);
@@ -164,7 +162,7 @@ public class EndGameScreen extends AppCompatActivity {
         try {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         } catch (Exception e){
-            Toast.makeText(view.getContext(), "Error on launching keyboard!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), R.string.keyboardError, Toast.LENGTH_SHORT).show();
         }
         view.clearFocus();
     }
@@ -173,7 +171,7 @@ public class EndGameScreen extends AppCompatActivity {
     public void onBackPressed() {
         onWindowFocusChanged(true);
         if(!cancel){
-            Toast.makeText(this, "Click once more to go to Home Screen!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toastEndBack, Toast.LENGTH_SHORT).show();
             cancel = true;
         } else {
             super.onBackPressed();
@@ -194,4 +192,17 @@ public class EndGameScreen extends AppCompatActivity {
         endGameLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         super.onWindowFocusChanged(hasFocus);
     }
+
+    private void assign() {
+        score = getIntent().getIntExtra("points", 0);
+        level = getIntent().getIntExtra("level", Game.EASY);
+        levelLabel = findViewById(R.id.levelLabel);
+        gameOverLabel = findViewById(R.id.gameOverLabel);
+        scoreLabel = findViewById(R.id.scoreOverLabel);
+        pointsLabel = findViewById(R.id.pointsOverLabel);
+        sendButton = findViewById(R.id.sendButton);
+        backButton = findViewById(R.id.backOverButton);
+        usernameInput = findViewById(R.id.usernameInput);
+    }
+
 }

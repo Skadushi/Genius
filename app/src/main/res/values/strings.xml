@@ -9,16 +9,28 @@
     <string name="start">Start</string>
     <string name="easy">Easy</string>
     <string name="hard">Hard</string>
-    <string name="back">Back</string>
     <string name="score">Score</string>
+    <string name="toastGameBack">Click once more to leave!</string>
+    <string name="err">An internal error has occurred!</string>
     <!-->Game Over Screen<-->
     <string name="gameOver">Game Over</string>
     <string name="typeName">Type here your name</string>
     <string name="saveScore">Save score</string>
+    <string name="scoreSaved">Score saved!</string>
     <string name="provideName">Type a valid name(White spaces are ignored!)</string>
+    <string name="toastEndBack">Click once more to go to Home Screen!</string>
+    <string name="keyboardError">Error on launching keyboard</string>
     <!-->How to play Screen<-->
+    <string name="back">Back</string>
 
-    <!-->AboutScreen Screen<-->
+    <!-->About Screen<-->
 
+    <!-->High Scores Screen<-->
+    <string name="first">1st</string>
+    <string name="second">2nd</string>
+    <string name="third">3rd</string>
+    <string name="fourth">4th</string>
+    <string name="fifth">5th</string>
+    <string name="loading">So empty!</string>
 
 </resources>

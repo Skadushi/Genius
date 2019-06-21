@@ -1,11 +1,15 @@
-package com.example.genius;
+package com.example.genius.Engine;
 
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.genius.GameScreen;
+import com.example.genius.R;
+
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class GameEngine {
 
@@ -21,7 +25,7 @@ public class GameEngine {
         }
     }
 
-    public void generateNext(){
+    private void generateNext() {
         colors.add(new GeniusColor());
     }
 
@@ -29,7 +33,7 @@ public class GameEngine {
         this.difficulty = difficulty;
     }
 
-    public void showColors(LinearLayout coloredLayout, TextView numberTipLabel){
+    public void showColors(LinearLayout coloredLayout, TextView numberTipLabel) {
         generateNext();
         recursiveColorChange(coloredLayout, numberTipLabel, 0);
     }
@@ -37,10 +41,10 @@ public class GameEngine {
     private void recursiveColorChange(final LinearLayout coloredLayout, final TextView tip, Integer x) {
         final int i = x + 1;
         if(x < colors.size()){
-            switch (colors.get(x).color){
+            switch (colors.get(x).color) {
                 case GeniusColor.GREEN:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.green));
-                    tip.setText(x.toString());
+                    tip.setText(String.format(Locale.getDefault(), "%d", x));
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -50,7 +54,7 @@ public class GameEngine {
                     break;
                 case GeniusColor.RED:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.red));
-                    tip.setText(x.toString());
+                    tip.setText(String.format(Locale.getDefault(), "%d", x));
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -60,7 +64,7 @@ public class GameEngine {
                     break;
                 case GeniusColor.YELLOW:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.yellow));
-                    tip.setText(x.toString());
+                    tip.setText(String.format(Locale.getDefault(), "%d", x));
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -70,7 +74,7 @@ public class GameEngine {
                     break;
                 case GeniusColor.BLUE:
                     coloredLayout.setBackgroundColor(coloredLayout.getContext().getResources().getColor(R.color.blue));
-                    tip.setText(x.toString());
+                    tip.setText(String.format(Locale.getDefault(), "%d", x));
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -86,7 +90,7 @@ public class GameEngine {
         }
     }
 
-    private Boolean levelEnded(){
+    private Boolean levelEnded() {
         if(current == colors.size()){
             return true;
         }
@@ -94,7 +98,7 @@ public class GameEngine {
         return false;
     }
 
-    public int greenClick(final ImageView pressed){
+    public int greenClick(final ImageView pressed) {
         pressed.setImageResource(R.drawable.green_pressed);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -115,7 +119,7 @@ public class GameEngine {
         }
     }
 
-    public int redClick(final ImageView pressed){
+    public int redClick(final ImageView pressed) {
         pressed.setImageResource(R.drawable.red_pressed);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -136,7 +140,7 @@ public class GameEngine {
         }
     }
 
-    public int yellowClick(final ImageView pressed){
+    public int yellowClick(final ImageView pressed) {
         pressed.setImageResource(R.drawable.yellow_pressed);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -157,7 +161,7 @@ public class GameEngine {
         }
     }
 
-    public int blueClick(final ImageView pressed){
+    public int blueClick(final ImageView pressed) {
         pressed.setImageResource(R.drawable.blue_pressed);
         new Handler().postDelayed(new Runnable() {
             @Override

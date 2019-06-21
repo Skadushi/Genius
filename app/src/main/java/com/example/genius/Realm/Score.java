@@ -5,13 +5,22 @@ import io.realm.annotations.PrimaryKey;
 
 public class Score extends RealmObject {
 
+    public static int id = 0;
+
     @PrimaryKey
     private int idScore;
     private int score;
     private int level;
-    private String nome;
+    private String name;
 
+    public Score() {}
 
+    public Score(int idScore, int score, int level, String nome) {
+        this.idScore = idScore;
+        this.score = score;
+        this.level = level;
+        this.name = nome;
+    }
 
     public int getIdScore() {
         return idScore;
@@ -21,12 +30,12 @@ public class Score extends RealmObject {
         this.idScore = idScore;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String name) {
+        this.name = name;
     }
 
     public int getScore() {

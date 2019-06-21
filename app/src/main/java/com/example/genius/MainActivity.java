@@ -12,12 +12,11 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout mainLayout;
     private Button playMenuButton;
     private Button howToMenuButton;
+    private Button highScoresButton;
     private Button aboutMenuButton;
-
 
     //jsonschema2pojo
     //https://www.simplifiedcoding.net/retrofit-android-example/
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
         mainLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-        playMenuButton = findViewById(R.id.playMenuButton);
-        howToMenuButton = findViewById(R.id.howToPlayMenuButton);
-        aboutMenuButton = findViewById(R.id.aboutMenuButton);
+        assign();
 
         playMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         howToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), HowToPlay.class));
+                startActivity(new Intent(v.getContext(), HowToPlayScreen.class));
             }
         });
 
@@ -51,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), AboutScreen.class));
+            }
+        });
+
+        highScoresButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), HighScoresScreen.class));
             }
         });
 
@@ -68,5 +72,11 @@ public class MainActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
+    private void assign(){
+        playMenuButton = findViewById(R.id.playMenuButton);
+        howToMenuButton = findViewById(R.id.howToPlayMenuButton);
+        aboutMenuButton = findViewById(R.id.aboutMenuButton);
+        highScoresButton = findViewById(R.id.highScoresMenuButton);
+    }
 
 }
