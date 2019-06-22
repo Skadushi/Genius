@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Genius</string>
-    <string name="EASY">FÁCIL</string>
-    <string name="HARD">DIFÍCIL</string>
     <string name="aboutButton">Sobre</string>
     <string name="back">Voltar</string>
     <string name="easy">Fácil</string>
@@ -27,4 +25,7 @@
     <string name="toastEndBack">Clique mais uma vez para ir a Tela Inicial</string>
     <string name="toastGameBack">Clique mais uma vez para sair!</string>
     <string name="typeName">Digite seu nome aqui</string>
+    <string name="sixth">6º</string>
+    <string name="seventh">7º</string>
+    <string name="eigth">8º</string>
 </resources>

@@ -9,6 +9,7 @@
     <string name="start">Start</string>
     <string name="easy">Easy</string>
     <string name="hard">Hard</string>
+    <string name="back">Back</string>
     <string name="score">Score</string>
     <string name="toastGameBack">Click once more to leave!</string>
     <string name="err">An internal error has occurred!</string>
@@ -21,7 +22,6 @@
     <string name="toastEndBack">Click once more to go to Home Screen!</string>
     <string name="keyboardError">Error on launching keyboard</string>
     <!-->How to play Screen<-->
-    <string name="back">Back</string>
 
     <!-->About Screen<-->
 
@@ -32,8 +32,9 @@
     <string name="fourth">4th</string>
     <string name="fifth">5th</string>
     <string name="loading">So empty!</string>
-    <string name="EASY">EASY</string>
-    <string name="HARD">HARD</string>
+    <string name="sixth">6th</string>
+    <string name="seventh">7th</string>
+    <string name="eigth">8th</string>
 
 
 </resources>

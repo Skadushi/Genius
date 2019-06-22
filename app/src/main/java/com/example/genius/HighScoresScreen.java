@@ -22,15 +22,19 @@ import io.realm.Sort;
 public class HighScoresScreen extends AppCompatActivity {
 
     private Button backButton;
-    private LinearLayout highScoresLayout;
+    private Button easyScores;
+    private Button hardScores;
     private TextView score1;
     private TextView score2;
     private TextView score3;
     private TextView score4;
     private TextView score5;
-    private TextView easyScores;
-    private TextView hardScores;
+    private TextView score6;
+    private TextView score7;
+    private TextView score8;
+    private TextView levelLabel;
     private ArrayList<TextView> labels;
+    private LinearLayout highScoresLayout;
     private final Realm realm = Realm.getDefaultInstance();
 
     @Override
@@ -53,8 +57,7 @@ public class HighScoresScreen extends AppCompatActivity {
         easyScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                easyScores.setText(R.string.EASY);
-                hardScores.setText(R.string.hard);
+                levelLabel.setText(R.string.easy);
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     @ParametersAreNonnullByDefault
@@ -63,7 +66,7 @@ public class HighScoresScreen extends AppCompatActivity {
 
                         resetLabels();
 
-                        for(int x = 0; x < 5 & x < easyScores.size(); x++){
+                        for(int x = 0; x < 8 & x < easyScores.size(); x++){
                             final TextView text = labels.get(x);
                             final Score score = easyScores.get(x);
                             if(score == null) {
@@ -79,8 +82,7 @@ public class HighScoresScreen extends AppCompatActivity {
         hardScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                easyScores.setText(R.string.easy);
-                hardScores.setText(R.string.HARD);
+                levelLabel.setText(R.string.hard);
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     @ParametersAreNonnullByDefault
@@ -89,7 +91,7 @@ public class HighScoresScreen extends AppCompatActivity {
 
                         resetLabels();
 
-                        for(int x = 0; x < 5 & x < hardScores.size(); x++){
+                        for(int x = 0; x < 8 & x < hardScores.size(); x++){
                             final TextView text = labels.get(x);
                             final Score score = hardScores.get(x);
                             if(score == null) {
@@ -136,13 +138,17 @@ public class HighScoresScreen extends AppCompatActivity {
         score3 = findViewById(R.id.easyScore3);
         score4 = findViewById(R.id.easyScore4);
         score5 = findViewById(R.id.easyScore5);
+        score6 = findViewById(R.id.easyScore6);
+        score7 = findViewById(R.id.easyScore7);
+        score8 = findViewById(R.id.easyScore8);
+        levelLabel = findViewById(R.id.levelLabel);
+        backButton = findViewById(R.id.backHSButton);
         easyScores = findViewById(R.id.easyScoresLabel);
         hardScores = findViewById(R.id.hardScoresLabel);
-        backButton = findViewById(R.id.backHSButton);
     }
 
     private void resetLabels(){
-        for(int x = 0; x < 5; x++){
+        for(int x = 0; x < 8; x++){
             labels.get(x).setText(R.string.loading);
         }
     }
@@ -154,6 +160,9 @@ public class HighScoresScreen extends AppCompatActivity {
         labels.add(score3);
         labels.add(score4);
         labels.add(score5);
+        labels.add(score6);
+        labels.add(score7);
+        labels.add(score8);
     }
 
     private void initializeAsEasy(){
@@ -165,7 +174,7 @@ public class HighScoresScreen extends AppCompatActivity {
 
                 resetLabels();
 
-                for(int x = 0; x < 5 & x < easyScores.size(); x++){
+                for(int x = 0; x < 8 & x < easyScores.size(); x++){
                     final TextView text = labels.get(x);
                     final Score score = easyScores.get(x);
                     if(score == null) {
