@@ -4,11 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.squareup.picasso.Picasso;
 
 public class AboutScreen extends AppCompatActivity {
 
     private Button backButton;
+    private ImageView logoImage;
     private LinearLayout aboutLayout;
 
     @Override
@@ -25,6 +29,7 @@ public class AboutScreen extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         assign();
+        setLogoImage();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +58,13 @@ public class AboutScreen extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
-    private void assign(){
+    private void assign() {
         backButton = findViewById(R.id.backAboutButton);
+        logoImage = findViewById(R.id.logoImage);
+    }
+
+    private void setLogoImage() {
+        Picasso.get().load("http://2.bp.blogspot.com/-msWS_g27tXQ/VgLzTIKh3dI/AAAAAAAABuY/Bmf5ST9xHxc/s1600/Logo%2BAtari.png").resize(160, 180).into(logoImage);
     }
 
 }

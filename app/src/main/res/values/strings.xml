@@ -35,6 +35,10 @@
     <string name="sixth">6th</string>
     <string name="seventh">7th</string>
     <string name="eigth">8th</string>
+    <string name="greenButton">Green Button</string>
+    <string name="yellowButton">Yellow Button</string>
+    <string name="redButton">Red Button</string>
+    <string name="blueButton">Blue Button</string>
 
 
 </resources>

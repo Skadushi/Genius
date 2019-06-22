@@ -72,7 +72,7 @@ public class HighScoresScreen extends AppCompatActivity {
                             if(score == null) {
                                 continue;
                             }
-                            text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
+                            text.setText(String.format(Locale.getDefault(),"%d - %s.", score.getScore(), score.getName()));
                         }
                     }
                 });
@@ -97,7 +97,7 @@ public class HighScoresScreen extends AppCompatActivity {
                             if(score == null) {
                                 continue;
                             }
-                            text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
+                            text.setText(String.format(Locale.getDefault(),"%d - %s.", score.getScore(), score.getName()));
                         }
                     }
                 });
@@ -147,7 +147,7 @@ public class HighScoresScreen extends AppCompatActivity {
         hardScores = findViewById(R.id.hardScoresLabel);
     }
 
-    private void resetLabels(){
+    private void resetLabels() {
         for(int x = 0; x < 8; x++){
             labels.get(x).setText(R.string.loading);
         }
@@ -165,7 +165,7 @@ public class HighScoresScreen extends AppCompatActivity {
         labels.add(score8);
     }
 
-    private void initializeAsEasy(){
+    private void initializeAsEasy() {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             @ParametersAreNonnullByDefault

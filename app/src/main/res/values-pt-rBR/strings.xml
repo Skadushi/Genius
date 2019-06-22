@@ -28,4 +28,8 @@
     <string name="sixth">6º</string>
     <string name="seventh">7º</string>
     <string name="eigth">8º</string>
+    <string name="greenButton">Botão Verde</string>
+    <string name="yellowButton">Botão Amarelo</string>
+    <string name="redButton">Botão Vermelho</string>
+    <string name="blueButton">Botão Azul</string>
 </resources>
