@@ -1,5 +1,6 @@
 package com.example.genius;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.genius.Retrofit.API;
 import com.example.genius.Retrofit.AboutText;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -78,11 +81,20 @@ public class AboutScreen extends AppCompatActivity {
     }
 
     private void setLogoImage() {
-        Picasso.get().load("http://2.bp.blogspot.com/-msWS_g27tXQ/VgLzTIKh3dI/AAAAAAAABuY/Bmf5ST9xHxc/s1600/Logo%2BAtari.png").resize(160, 180).into(logoImage);
+        Picasso.get().load("https://seeklogo.com/images/B/Brinquedos_Estrela-logo-C935D7897F-seeklogo.com.png").resize(160, 180).into(logoImage);
     }
 
     private void retrofit() {
-        final Retrofit retrofit = new Retrofit.Builder().baseUrl(API.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                retrofitLabel.setVisibility(View.VISIBLE);
+            }
+        }, 300);
+
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        final Retrofit retrofit = new Retrofit.Builder().baseUrl(API.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).build();
 
         API api = retrofit.create(API.class);
 
@@ -91,13 +103,12 @@ public class AboutScreen extends AppCompatActivity {
         call.enqueue(new Callback<AboutText>() {
             @Override
             public void onResponse(Call<AboutText> call, Response<AboutText> response) {
-                Toast.makeText(AboutScreen.this, response.toString(), Toast.LENGTH_SHORT).show();
+                retrofitLabel.setText(response.body().getText());
             }
 
             @Override
             public void onFailure(Call<AboutText> call, Throwable t) {
-                Toast.makeText(AboutScreen.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                retrofitLabel.setText(call.toString());
+
             }
 
         });

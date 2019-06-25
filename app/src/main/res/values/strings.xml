@@ -24,7 +24,8 @@
     <!-->How to play Screen<-->
 
     <!-->About Screen<-->
-
+    <string name="retrofit">Loading&#8230; (Make sure you have internet connection).</string>
+    <string name="name" translatable="false">Andrei Deniz</string>
     <!-->High Scores Screen<-->
     <string name="first">1st</string>
     <string name="second">2nd</string>
@@ -39,7 +40,7 @@
     <string name="yellowButton">Yellow Button</string>
     <string name="redButton">Red Button</string>
     <string name="blueButton">Blue Button</string>
-    <string name="retrofit">Loading&#8230; (Make sure you have internet connection).</string>
+    <string name="school" translatable="false">IFRS - Campus Osorio</string>
 
 
 </resources>

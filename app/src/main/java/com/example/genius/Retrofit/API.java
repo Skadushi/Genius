@@ -5,9 +5,9 @@ import retrofit2.http.GET;
 
 public interface API {
 
-    String BASE_URL = "https://github.com/Skadushi/Genius/blob/master/";
+    String BASE_URL = "https://api.myjson.com/bins/";
 
-    @GET("text")
+    @GET("10uoqh")
     Call<AboutText> getText();
 
 }
