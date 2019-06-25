@@ -15,9 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private Button highScoresButton;
     private Button aboutMenuButton;
 
-    //jsonschema2pojo
-    //https://www.simplifiedcoding.net/retrofit-android-example/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

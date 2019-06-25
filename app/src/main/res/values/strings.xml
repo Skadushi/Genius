@@ -39,6 +39,7 @@
     <string name="yellowButton">Yellow Button</string>
     <string name="redButton">Red Button</string>
     <string name="blueButton">Blue Button</string>
+    <string name="retrofit">Loading&#8230; (Make sure you have internet connection).</string>
 
 
 </resources>

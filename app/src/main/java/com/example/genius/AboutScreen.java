@@ -6,14 +6,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.genius.Retrofit.API;
+import com.example.genius.Retrofit.AboutText;
 import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
 
 public class AboutScreen extends AppCompatActivity {
 
     private Button backButton;
     private ImageView logoImage;
     private LinearLayout aboutLayout;
+    private TextView retrofitLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,7 @@ public class AboutScreen extends AppCompatActivity {
 
         assign();
         setLogoImage();
+        retrofit();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +74,34 @@ public class AboutScreen extends AppCompatActivity {
     private void assign() {
         backButton = findViewById(R.id.backAboutButton);
         logoImage = findViewById(R.id.logoImage);
+        retrofitLabel = findViewById(R.id.retrofitLabel);
     }
 
     private void setLogoImage() {
         Picasso.get().load("http://2.bp.blogspot.com/-msWS_g27tXQ/VgLzTIKh3dI/AAAAAAAABuY/Bmf5ST9xHxc/s1600/Logo%2BAtari.png").resize(160, 180).into(logoImage);
+    }
+
+    private void retrofit() {
+        final Retrofit retrofit = new Retrofit.Builder().baseUrl(API.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+
+        API api = retrofit.create(API.class);
+
+        Call<AboutText> call = api.getText();
+
+        call.enqueue(new Callback<AboutText>() {
+            @Override
+            public void onResponse(Call<AboutText> call, Response<AboutText> response) {
+                Toast.makeText(AboutScreen.this, response.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<AboutText> call, Throwable t) {
+                Toast.makeText(AboutScreen.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                retrofitLabel.setText(call.toString());
+            }
+
+        });
+
     }
 
 }

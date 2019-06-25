@@ -10,7 +10,7 @@
     <string name="fourth">4º</string>
     <string name="gameOver">Fim de jogo</string>
     <string name="hard">Difícil</string>
-    <string name="highScoresButton">Melhores pontuações</string>
+    <string name="highScoresButton">Pontuações</string>
     <string name="howToPlayButton">Como jogar</string>
     <string name="keyboardError">Erro ao abrir o teclado</string>
     <string name="loading">Tão Vazio!</string>
@@ -32,4 +32,5 @@
     <string name="yellowButton">Botão Amarelo</string>
     <string name="redButton">Botão Vermelho</string>
     <string name="blueButton">Botão Azul</string>
+    <string name="retrofit">Carregando&#8230; (Assegure-se de ter conexão com a internet).</string>
 </resources>
