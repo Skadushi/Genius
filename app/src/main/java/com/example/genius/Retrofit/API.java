@@ -7,7 +7,7 @@ public interface API {
 
     String BASE_URL = "https://api.myjson.com/bins/";
 
-    @GET("10uoqh")
+    @GET("idi27")
     Call<AboutText> getText();
 
 }

@@ -139,7 +139,7 @@ public class EndGameScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                levelLabel.setText(String.format(Locale.getDefault(), "%s", (level == Game.EASY) ? "Easy" : "Hard"));
+                levelLabel.setText(String.format(Locale.getDefault(), "%s", (level == Game.EASY) ? getString(R.string.easy) : getString(R.string.hard)));
                 levelLabel.setVisibility(View.VISIBLE);
                 levelLabel.setAnimation(slideIn);
             }

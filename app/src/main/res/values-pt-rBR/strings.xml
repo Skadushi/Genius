@@ -32,5 +32,16 @@
     <string name="yellowButton">Botão Amarelo</string>
     <string name="redButton">Botão Vermelho</string>
     <string name="blueButton">Botão Azul</string>
-    <string name="retrofit">Carregando&#8230; (Assegure-se de ter conexão com a internet).</string>
+    <string name="retrofit">Carregando…</string>
+    <string name="connector">por</string>
+    <string name="internet">Conecte seu telefone à internet para ler o conteúdo.</string>
+    <string name="how1">Básico</string>
+    <string name="how2">O jogo tem quatro cores: Verde, Vermelho, Amarelo e Azul, e cada uma dessas cores tem um botão correspondente com sua cor.</string>
+    <string name="how3">Ao clicar em \"Iniciar\", haverá um retângulo mostrando a ordem e as cores que você deve pressionar. Depois que a animação terminar, repita a sequência que foi dada e você chegará ao próximo nível.</string>
+    <string name="how4">Depois de terminar a primeira sequência, e clicar em \"Iniciar\" mais uma vez, o jogo lhe dará a seqüência que você acabou de ter com mais uma cor no final, como uma corrente. Repita isso tanto quanto o seu cérebro pode.</string>
+    <string name="how5">Niveis</string>
+    <string name="how6">A velocidade em que as cores são mostradas é definida pelo nível selecionado na primeira interação com a tela do jogo. O nível \"Fácil\" mostra as cores duas vezes mais lentas do que o nível \"Difícil\", por isso certifique-se de treinar um pouco antes de ir para o verdadeiro teste!</string>
+    <string name="how7">Pontuação</string>
+    <string name="how8">Cada cor que você pressionar corretamente aumenta sua pontuação em 1. Quando o jogo terminar, digite seu nome e verifique o quão alto você está na classificação na tela de Pontuações. As pontuações são separadas por níveis, para ser justo!</string>
+    <string name="image">Logo da Estrela</string>
 </resources>

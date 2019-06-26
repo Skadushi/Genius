@@ -16,6 +16,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,13 +89,6 @@ public class AboutScreen extends AppCompatActivity {
     }
 
     private void retrofit() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                retrofitLabel.setVisibility(View.VISIBLE);
-            }
-        }, 300);
-
         Gson gson = new GsonBuilder().setLenient().create();
 
         final Retrofit retrofit = new Retrofit.Builder().baseUrl(API.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).build();
@@ -102,13 +99,21 @@ public class AboutScreen extends AppCompatActivity {
 
         call.enqueue(new Callback<AboutText>() {
             @Override
+            @ParametersAreNonnullByDefault
             public void onResponse(Call<AboutText> call, Response<AboutText> response) {
-                retrofitLabel.setText(response.body().getText());
+                if(response.body() != null) {
+                    if(Locale.getDefault().toString().equals("pt_BR")){
+                        retrofitLabel.setText(response.body().getTextptbr());
+                    } else {
+                        retrofitLabel.setText(response.body().getText());
+                    }
+                }
             }
 
             @Override
+            @ParametersAreNonnullByDefault
             public void onFailure(Call<AboutText> call, Throwable t) {
-
+                retrofitLabel.setText(R.string.internet);
             }
 
         });

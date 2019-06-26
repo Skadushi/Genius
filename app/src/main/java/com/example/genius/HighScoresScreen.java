@@ -72,7 +72,7 @@ public class HighScoresScreen extends AppCompatActivity {
                             if(score == null) {
                                 continue;
                             }
-                            text.setText(String.format(Locale.getDefault(),"%d - %s.", score.getScore(), score.getName()));
+                            text.setText(String.format(Locale.getDefault(),"%d %s %s.", score.getScore(), getString(R.string.connector), score.getName()));
                         }
                     }
                 });
@@ -97,7 +97,7 @@ public class HighScoresScreen extends AppCompatActivity {
                             if(score == null) {
                                 continue;
                             }
-                            text.setText(String.format(Locale.getDefault(),"%d - %s.", score.getScore(), score.getName()));
+                            text.setText(String.format(Locale.getDefault(),"%d %s %s.", score.getScore(), getString(R.string.connector), score.getName()));
                         }
                     }
                 });
@@ -180,7 +180,7 @@ public class HighScoresScreen extends AppCompatActivity {
                     if(score == null) {
                         continue;
                     }
-                    text.setText(String.format(Locale.getDefault(),"%d by %s.", score.getScore(), score.getName()));
+                    text.setText(String.format(Locale.getDefault(),"%d %s %s.", score.getScore(), getString(R.string.connector), score.getName()));
                 }
             }
         });

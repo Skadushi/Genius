@@ -8,6 +8,9 @@ public class AboutText {
     @SerializedName("text")
     @Expose
     private String text;
+    @SerializedName("textptbr")
+    @Expose
+    private String textptbr;
 
     public String getText() {
         return text;
@@ -15,6 +18,14 @@ public class AboutText {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTextptbr() {
+        return textptbr;
+    }
+
+    public void setTextptbr(String textptbr) {
+        this.textptbr = textptbr;
     }
 
 }

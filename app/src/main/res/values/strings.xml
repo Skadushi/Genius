@@ -24,7 +24,7 @@
     <!-->How to play Screen<-->
 
     <!-->About Screen<-->
-    <string name="retrofit">Loading&#8230; (Make sure you have internet connection).</string>
+    <string name="retrofit">Loading…</string>
     <string name="name" translatable="false">Andrei Deniz</string>
     <!-->High Scores Screen<-->
     <string name="first">1st</string>
@@ -41,6 +41,17 @@
     <string name="redButton">Red Button</string>
     <string name="blueButton">Blue Button</string>
     <string name="school" translatable="false">IFRS - Campus Osorio</string>
+    <string name="connector">by</string>
+    <string name="internet">Connect your phone to the internet to show the content.</string>
+    <string name="how1">Basics</string>
+    <string name="how2">The game has four colors: Green, Red, Yellow and Blue, and each of those colors has a correspondent button with their color.</string>
+    <string name="how3">As you click \"Start\", there will be a rectangle showing the order and what colors you should press. After the animation is over, repeat the sequence that was given and you will get to the next level.</string>
+    <string name="how4">After you finish the first sequence given, and you click \"Start\" once again, the game will give you the sequence you just had with one more color at the end, as a chain. Repeat it as much as your brain can.</string>
+    <string name="how5">Levels</string>
+    <string name="how6">The speed the colors are shown is defined by the level you select in the first interaction with the Game Screen. The \"Easy\" level shows the colors two times slower than the \"Hard\" level, so make sure you train a little bit before going to the true test!</string>
+    <string name="how7">Score</string>
+    <string name="how8">Each color you correctly press increases your score by 1. When the game is over, type your name and check how high you are in the standings in the High Scores screen. The scores are separated by levels, to make it fair!</string>
+    <string name="image">Estrela\'s logo</string>
 
 
 </resources>

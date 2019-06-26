@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/aboutLayout"
     android:layout_width="match_parent"
@@ -49,6 +48,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
         android:paddingBottom="50dp">
 
         <TextView
@@ -62,7 +63,7 @@
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <TextView
             android:layout_width="match_parent"
@@ -92,7 +93,8 @@
             android:id="@+id/logoImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars[2]" />
+            tools:srcCompat="@tools:sample/avatars[2]"
+            android:contentDescription="@string/image"/>
 
     </LinearLayout>
 </LinearLayout>
