@@ -80,6 +80,7 @@ public class EndGameScreen extends AppCompatActivity {
                 } else {
                     Toast.makeText(EndGameScreen.this, R.string.provideName, Toast.LENGTH_SHORT).show();
                 }
+                realm.close();
             }
         });
 

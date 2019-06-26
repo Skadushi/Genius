@@ -85,7 +85,7 @@ public class AboutScreen extends AppCompatActivity {
     }
 
     private void setLogoImage() {
-        Picasso.get().load("https://seeklogo.com/images/B/Brinquedos_Estrela-logo-C935D7897F-seeklogo.com.png").resize(160, 180).into(logoImage);
+        Picasso.get().load(R.drawable.githubicon).resize(75, 75).into(logoImage);
     }
 
     private void retrofit() {

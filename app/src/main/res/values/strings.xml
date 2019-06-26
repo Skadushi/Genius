@@ -52,6 +52,7 @@
     <string name="how7">Score</string>
     <string name="how8">Each color you correctly press increases your score by 1. When the game is over, type your name and check how high you are in the standings in the High Scores screen. The scores are separated by levels, to make it fair!</string>
     <string name="image">Estrela\'s logo</string>
+    <string name="github" translatable="false">/Skadushi/Genius</string>
 
 
 </resources>

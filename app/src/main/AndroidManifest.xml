@@ -11,12 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HighScoresScreen" />
+        <activity android:name=".HighScoresScreen"
+            android:screenOrientation="portrait" />
         <activity android:name=".AboutScreen" />
-        <activity android:name=".HowToPlayScreen" />
-        <activity android:name=".EndGameScreen" />
-        <activity android:name=".GameScreen" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".HowToPlayScreen"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EndGameScreen"
+            android:screenOrientation="portrait" />
+        <activity android:name=".GameScreen"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
