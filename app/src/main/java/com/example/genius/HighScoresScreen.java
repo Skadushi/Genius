@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.genius.Engine.Game;
-import com.example.genius.Realm.Score;
+import com.example.genius.engine.Game;
+import com.example.genius.realm.Score;
 
 import java.util.ArrayList;
 import java.util.Locale;

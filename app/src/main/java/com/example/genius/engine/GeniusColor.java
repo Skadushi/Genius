@@ -1,4 +1,4 @@
-package com.example.genius.Engine;
+package com.example.genius.engine;
 
 import java.util.Random;
 

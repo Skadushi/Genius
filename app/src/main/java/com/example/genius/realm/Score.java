@@ -1,4 +1,4 @@
-package com.example.genius.Realm;
+package com.example.genius.realm;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.genius.Engine.Game;
-import com.example.genius.Engine.GameEngine;
+import com.example.genius.engine.Game;
+import com.example.genius.engine.GameEngine;
 
 import java.util.Locale;
 

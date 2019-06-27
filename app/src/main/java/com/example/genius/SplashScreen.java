@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.genius.Realm.Score;
+import com.example.genius.realm.Score;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

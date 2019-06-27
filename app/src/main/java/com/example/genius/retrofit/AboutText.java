@@ -1,4 +1,4 @@
-package com.example.genius.Retrofit;
+package com.example.genius.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
